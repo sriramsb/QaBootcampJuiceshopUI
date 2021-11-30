@@ -46,6 +46,9 @@ public class DriverFactory {
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--no-sandbox");
                 options.addArguments("--headless");
+                options.setExperimentalOption("useAutomationExtension", false);
+                options.addArguments("disable-infobars"); // disabling infobars
+                options.addArguments("--disable-extensions"); // disabling extensions
                 options.addArguments("--disable-dev-shm-usage");
                 options.setExperimentalOption("excludeSwitches",Arrays.asList("disable-popup-blocking"));
                 driver= new ChromeDriver(options);
