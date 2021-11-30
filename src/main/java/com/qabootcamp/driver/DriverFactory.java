@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -42,7 +43,11 @@ public class DriverFactory {
                 }
             default:
                 WebDriverManager.chromedriver().setup();
-                driver= new ChromeDriver();
+                ChromeOptions option = new ChromeOptions();
+                option.addArguments('--headless');
+                option.addArguments('--no-sandbox');
+                option.addArguments('--disable-dev-shm-usage');
+                driver= new ChromeDriver(option);
         }
         }
         return driver;
