@@ -25,12 +25,15 @@ public class DriverFactory {
             case "IE":
                 WebDriverManager.iedriver().setup();
                 driver= new InternetExplorerDriver();
+                break;
             case "EDGE":
                 WebDriverManager.edgedriver().setup();
                 driver=new EdgeDriver();
+                break;
             case "FIREFOX":
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
+                break;
             case "REMOTE":
                 DesiredCapabilities capabilities = new DesiredCapabilities();
                 capabilities.setCapability("browserName", "chrome");
@@ -41,12 +44,14 @@ public class DriverFactory {
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
+                break;
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--no-sandbox", "--disable-dev-shm-usage", "--headless");
                 driver= new ChromeDriver(options);
-        }
+                break;
+            }
         }
         return driver;
     }
