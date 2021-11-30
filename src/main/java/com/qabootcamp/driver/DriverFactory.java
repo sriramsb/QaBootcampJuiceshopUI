@@ -2,17 +2,17 @@ package com.qabootcamp.driver;
 
 import com.qabootcamp.utils.ReadPropertyFile;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import java.net.MalformedURLException;
+import java.net.URL;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class DriverFactory {
 
@@ -44,13 +44,7 @@ public class DriverFactory {
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("--no-sandbox");
-                options.addArguments("--headless");
-                options.setExperimentalOption("useAutomationExtension", false);
-                options.addArguments("disable-infobars"); // disabling infobars
-                options.addArguments("--disable-extensions"); // disabling extensions
-                options.addArguments("--disable-dev-shm-usage");
-                options.setExperimentalOption("excludeSwitches",Arrays.asList("disable-popup-blocking"));
+                options.addArguments("--no-sandbox", "--disable-dev-shm-usage", "--headless");
                 driver= new ChromeDriver(options);
         }
         }
