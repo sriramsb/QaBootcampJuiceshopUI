@@ -43,11 +43,12 @@ public class DriverFactory {
                 }
             default:
                 WebDriverManager.chromedriver().setup();
-                ChromeOptions option = new ChromeOptions();
-                option.addArguments('--headless');
-                option.addArguments('--no-sandbox');
-                option.addArguments('--disable-dev-shm-usage');
-                driver= new ChromeDriver(option);
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--no-sandbox");
+                options.addArguments("--headless");
+                options.addArguments("--disable-dev-shm-usage");
+                options.setExperimentalOption("excludeSwitches",Arrays.asList("disable-popup-blocking"));
+                driver= new ChromeDriver(options);
         }
         }
         return driver;
